@@ -1,0 +1,142 @@
+.form_container {
+  margin: 32px auto 16px auto;
+  /*position: relative; */
+}
+
+.form {
+  min-width: 600px;
+  /* margin: 32px auto 16px auto; */
+  position: relative;
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-color: #e0e0e0;
+  background-color: transparent;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.form_pin {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 0;
+  padding: 2px 8px 0 0;
+}
+
+.form_pin_icon {
+  color: #202124;
+  /* color: red; */
+  opacity: 0.71;
+  margin: 10px;
+}
+
+.undo_redo {
+  opacity: 0.25 !important;
+}
+
+.title {
+  width: 100%;
+  min-height: 44px;
+  max-height: 44px;
+  padding: 10px 15px;
+  background: transparent;
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+#title::placeholder {
+  color: #202124;
+  opacity: 0.71;
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.description {
+  width: 100%;
+  min-height: 46px;
+  max-height: 46px;
+  padding: 12px 16px;
+  letter-spacing: 0.01428571em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  color: #202124;
+}
+
+.textarea_div {
+  display: flex;
+  flex-direction: row;
+}
+
+.textarea_buttons {
+  display: flex;
+  position: absolute;
+  right: 12px;
+  gap: 8px;
+}
+
+.initial_icons {
+  padding: 12px;
+  color: aqua;
+}
+
+#form_buttons {
+  width: 100%;
+  margin: 4px 0;
+  min-height: 36px;
+  max-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.form_button {
+  padding: 0;
+}
+
+.form_icons {
+  margin: 0 8px;
+  padding: 0 8px;
+  color: #202124;
+  opacity: 0.71;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  margin-right: 15px;
+  padding: 8px 24px;
+  color: rgba(0, 0, 0, 0.87);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.01785714em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  height: 36px;
+  padding: 8px 24px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.form_palette {
+  background-color: white;
+  position: relative;
+}

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import ColorPalette from "./ColorPalaette";
+import ColorPalette from "./ColorPalette/ColorPalaette";
 
 export default function ModalComponent(props) {
   const showModalColorPalete = () => {
