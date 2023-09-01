@@ -1,6 +1,8 @@
+"use client";
+import styles from "./Notes.module.css";
 import Image from "next/image";
 import React from "react";
-import ColorPalette from "./ColorPalaette";
+// import ColorPalette from "./ColorPalaette";
 
 export default function Notes(props) {
   const [notePalette, setNotePalette] = React.useState(false);
@@ -29,9 +31,9 @@ export default function Notes(props) {
       return note.key !== id;
     });
     editNote["pin"] = !editNote["pin"];
-    newNotes.push(editNote);
-    props.setNotes(newNotes);
-    localStorage.setItem("noteList", JSON.stringify(newNotes));
+    // newNotes.push(editNote);
+    props.setNotes([editNote, ...newNotes]);
+    localStorage.setItem("noteList", JSON.stringify([editNote, ...newNotes]));
   };
 
   const handleNote = (id) => {
@@ -76,71 +78,101 @@ export default function Notes(props) {
   };
 
   return (
-    <>
-      <div className="notes-heading">
-        {props.filterednotes.length > 0 ? props.label : null}
-      </div>
-      <div className={props.layout ? "notes-grid" : "notes-list"}>
+    <div className={styles.note_container}>
+      {props.filterednotes.length > 0 ? (
+        <div className={styles.notes_heading}>{props.label}</div>
+      ) : null}
+      <div className={props.layout ? styles.notes_grid : styles.notes_list}>
         {props.filterednotes.map((note) => {
           return (
             <div
               className={[
-                props.layout ? "note-width-grid" : "note-width-list",
-                note.complete === "Done" ? "completed" : "incomplete",
-                "note",
+                props.layout ? styles.note_width_grid : styles.note_width_list,
+                note.complete === "Done" ? styles.completed : styles.incomplete,
+                styles.note,
               ].join(" ")}
               style={{ background: note.background }}
               key={note.key}
             >
-              <button
-                id="complete-button"
-                className={
-                  note.complete === "Done" ? "note-buttons" : "note-buttons"
-                }
+              <Image
+                alt=""
+                width={20}
+                height={20}
+                src={"/uncheck.svg"}
+                id={styles.complete_button}
+                className={styles.note_buttons}
                 onClick={() => handleComplete(note.key)}
-              >
-                <Image alt="" width={20} height={20} src={"/uncheck.svg"} />
-              </button>
-              <button
-                className="note-pin note-buttons"
+              />
+              <Image
+                alt=""
+                height={24}
+                width={24}
+                src={note.pin ? "/pin.svg" : "/unpin.svg"}
+                className={styles.note_pin}
                 onClick={(e) => handlePin(e, note.key)}
-              >
-                <Image
-                  alt=""
-                  height={20}
-                  width={20}
-                  src={note.pin ? "/pin.svg" : "/unpin.svg"}
-                />
-              </button>
+              />
               {note.title.length > 0 ? (
-                <div className="note-title">
+                <div className={styles.note_title}>
                   <span onClick={() => handleNote(note.key)}>{note.title}</span>
                 </div>
               ) : null}
               {note.description.length > 0 ? (
                 <pre
                   onClick={() => handleNote(note.key)}
-                  className="note-description"
+                  className={styles.note_description}
                 >
                   {note.description}
                 </pre>
               ) : null}
-              <div className="note-key"></div>
-              <div className="note-buttons">
-                <button onClick={() => handlePalette(note.key)}>
-                  <Image
-                    alt=""
-                    height={20}
-                    width={20}
-                    src={"/color-palette.svg"}
-                  />
-                </button>
-                <button onClick={() => handleCopy(note.key)}>
-                  <Image alt="" height={20} width={20} src={"/copy.svg"} />
-                </button>
-                <button onClick={() => handleDelete(note.key)}>
-                  <Image alt="" height={20} width={20} src={"/trash.svg"} />
-                </button>
+              <div className={styles.note_buttons}>
+                <Image
+                  alt=""
+                  height={36}
+                  width={34}
+                  src={"/copy.svg"}
+                  onClick={() => handleCopy(note.key)}
+                  className={styles.note_button}
+                />
+                <Image
+                  alt=""
+                  height={36}
+                  width={34}
+                  src={"/trash.svg"}
+                  onClick={() => handleDelete(note.key)}
+                  className={styles.note_button}
+                />
+                <Image
+                  alt=""
+                  height={36}
+                  width={34}
+                  src={"/color-palette.svg"}
+                  onClick={() => handlePalette(note.key)}
+                  className={styles.note_button}
+                />
+                <Image
+                  alt=""
+                  height={36}
+                  width={34}
+                  src={"/image.svg"}
+                  onClick={() => handlePalette(note.key)}
+                  className={styles.note_button}
+                />
+                <Image
+                  alt=""
+                  height={36}
+                  width={34}
+                  src={"/archive.svg"}
+                  onClick={() => handlePalette(note.key)}
+                  className={styles.note_button}
+                />
+                <Image
+                  alt=""
+                  height={36}
+                  width={34}
+                  src={"/more.svg"}
+                  onClick={() => handlePalette(note.key)}
+                  className={styles.note_button}
+                />
               </div>
               {/* {notePalette ? (
                 <ColorPalette setBackground={note.background} />
@@ -149,6 +181,6 @@ export default function Notes(props) {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
