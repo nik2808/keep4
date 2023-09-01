@@ -1,129 +1,34 @@
 "use client";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-import ModalComponent from "../../Components/ModalComponent";
-import Header from "../../Components/Header";
-import Form from "../../Components/Form";
-import Notes from "../../Components/Notes";
+import Header from "../../Components/Header/Header";
+import NavBar from "../../Components/NavBar/NavBar";
+import PageLayout from "../../Components/PageLayout/PageLayout";
 
 export default function Home() {
-  const notesSample = [
-    {
-      title: "abcd",
-      description: "xyz",
-      key: 1,
-      pin: false,
-      complete: "To-Do",
-      background: "white",
-    },
-    {
-      title: "abcdef",
-      description: "wxyz",
-      key: 2,
-      pin: true,
-      complete: "To-Do",
-      background: "white",
-    },
-  ];
-  const dataFromLocalStorage = JSON.parse(localStorage.getItem("noteList"));
-  const [notes, setNotes] = React.useState(
-    dataFromLocalStorage ? dataFromLocalStorage : notesSample
-  );
-  const [modalNote, setModalNote] = React.useState({});
-  const [modal, setModal] = React.useState(false);
-  const [search, setSearch] = React.useState("");
-  const [boxShadow, setBoxShadow] = React.useState("none");
-  localStorage.setItem("noteList", JSON.stringify(notes));
-
+  const [page, setPage] = React.useState("Home");
   const [layout, setLayout] = React.useState(true);
-
-  const handleLayoutChange = () => {
-    setLayout(!layout);
-  };
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleScroll = (event: React.UIEvent<HTMLDivElement, UIEvent>) => {
-    console.log("xyz");
-  };
-
-  const pinnedNotes = notes.filter(function (note) {
-    if (search.length > 0 && note.pin) {
-      return note.title.includes(search) || note.description.includes(search);
-    }
-    return note.pin;
-  });
-
-  const unpinnedNotes = notes.filter(function (note) {
-    if (search.length > 0 && !note.pin) {
-      return note.title.includes(search) || note.description.includes(search);
-    }
-    return !note.pin;
-  });
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      if (window.scrollY > 0) {
-        setBoxShadow("0 2px 6px 2px rgba(60, 64, 67, 0.3)");
-      } else {
-        setBoxShadow("none");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const [search, setSearch] = React.useState("");
+  const [showNavBar, setShowNavBar] = React.useState(false);
 
   return (
-    <div onScroll={handleScroll}>
-      {modal ? (
-        <ModalComponent
-          modalNote={modalNote}
-          setModalNote={setModalNote}
-          modal={modal}
-          setModal={setModal}
-          notes={notes}
-          setNotes={setNotes}
-        />
-      ) : null}
-      <div className="app">
-        <Header
-          boxShadow={boxShadow}
-          handleSearch={handleSearch}
-          handleLayoutChange={handleLayoutChange}
+    <div className="body">
+      <Header
+        setLayout={setLayout}
+        setSearch={setSearch}
+        layout={layout}
+        showNavBar={showNavBar}
+        setShowNavBar={setShowNavBar}
+      />
+      <div className="body-section">
+        <NavBar page={page} setPage={setPage} showNavBar={showNavBar} />
+        <PageLayout
+          page={page}
           layout={layout}
+          search={search}
+          showNavBar={showNavBar}
         />
-        <div
-          className="content"
-          style={{ boxShadow: "inset 1px 2px 0 rgba(60, 64, 67, 0.302))" }}
-        >
-          <Form notes={notes} setNotes={setNotes} />
-          <Notes
-            label={"Pinned"}
-            notes={notes}
-            setNotes={setNotes}
-            modal={modal}
-            setModal={setModal}
-            setModalNote={setModalNote}
-            filterednotes={pinnedNotes}
-            layout={layout}
-          />
-          <Notes
-            label={"Others"}
-            notes={notes}
-            setNotes={setNotes}
-            modal={modal}
-            setModal={setModal}
-            setModalNote={setModalNote}
-            filterednotes={unpinnedNotes}
-            layout={layout}
-          />
-        </div>
       </div>
     </div>
   );

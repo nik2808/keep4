@@ -1,0 +1,24 @@
+.palette {
+  position: absolute;
+  top: -8px;
+  left: 72px;
+  /* top: 222px;
+  left: 777px; */
+  z-index: 100;
+  /* margin-bottom: -25px;
+  margin-left: -60px; */
+  width: 400px;
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.palette_button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid lightgrey;
+}

@@ -1,6 +1,6 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 body {
   font-family: "Open Sans", Roboto, Arial, sans-serif;
@@ -11,10 +11,26 @@ body {
   padding: 0;
 }
 
+.body {
+  display: flex;
+  flex-direction: column;
+  /* background-color: yellow; */
+}
+
+.body-section {
+  display: flex;
+  padding-top: 64px;
+  /* background-color: green; */
+}
+
+.home_link {
+  width: 100%;
+}
+
 button:hover {
   cursor: pointer;
-  background-color: #f1f3f4;
-  border-radius: 50%;
+  /* background-color: #f1f3f4; */
+  /* border-radius: 50%; */
 }
 
 .modal {
@@ -258,6 +274,10 @@ textarea:focus {
   border: 1px solid rgb(224, 224, 224);
 }
 
+.form-palette {
+  background-color: transparent;
+}
+
 .palette {
   margin-bottom: -25px;
   margin-left: -60px;
@@ -268,10 +288,6 @@ textarea:focus {
   padding: 8px;
   display: flex;
   gap: 8px;
-}
-
-.form-palette {
-  background-color: transparent;
 }
 
 .palette-button {

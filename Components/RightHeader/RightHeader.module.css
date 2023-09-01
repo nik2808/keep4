@@ -1,0 +1,23 @@
+.right_header {
+  min-width: 268px;
+  max-width: 268px;
+  position: absolute;
+  right: 8px;
+  display: flex;
+}
+
+.header_buttons {
+  opacity: 0.54;
+  padding: 12px;
+}
+
+.buttons_left {
+  display: flex;
+  min-width: 144px;
+}
+
+.buttons_right {
+  display: flex;
+  min-width: 124px;
+  padding: 0 4px 0 30px;
+}
